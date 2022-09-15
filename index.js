@@ -1,52 +1,51 @@
-/*
-const VUELTAS = prompt ("ingrese cantidad de vueltas realizadas")
-let sumatoria = 0
-let promedio = 0
 
-for(let index = 1; index <= VUELTAS; index++){
-    const TIEMPO = prompt ("ingrese el tiempo realizado: "+ index)
-    sumatoria = sumatoria + parseFloat(TIEMPO)
-    console.log(sumatoria)
-}
+//sistema de pedidos para una pizzeria, los primeros 10 pedidos van con un 25% de descuento( por eso lo realicé con un for)
 
-promedio = sumatoria / VUELTAS
-
-alert("el promedio  por vuelta es: "+ promedio +" minutos")*/
-
-
-
-
-
-//EJEMPLO 4 - ARRAYS
-/*const arreglo1 = ["remera", "camisa", "sweaters", "buzos", "camperas", "jeans", "pantalones", "vestidos", "kimonos"];
-arreglo1.push ("polleras", "shorts");
-arreglo1.unshift("accesorios");
-
-for (let i = 0; i < arreglo1.length; i++){
-console.log(arreglo1[i].toLocaleUpperCase());
-}
-*/
-
-//EJEMPLO 5 - FUNCION CONSTRUCTORA
-/*
-function Remera(img, nombre, precio) {
-    this.img = img;
+function Pedidos(nombre, pedido, domicilio) {
     this.nombre = nombre;
-    this.precio = precio;
+    this.pedido = pedido;
+    this.domicilio = domicilio;
 }
 
 const arreglo = [];
 
 for (let index = 0; index < 10; index++) {
-    let img = prompt("ingrese la imagen");
-    let nombre = prompt("ingrese el nombre");
-    let precio = prompt("ingrese el precio");
-    let objeto = new Remera(img, nombre, precio);
+    let nombre = prompt("ingrese su nombre");
+    let pedido = prompt("ingrese su pedido según la carta");
+    let domicilio = prompt("Ingrese su domicilio");
+    let objeto = new Pedidos(nombre, pedido, domicilio);
 
     arreglo.push(objeto);
 
+    alert ("Pedido confirmado")
 }
 
 console.log(arreglo);
 
-*/
+
+
+
+
+//OBJETOS CON METODO.
+
+
+class Pizza{
+    constructor(nombre,precio){
+        this.nombre = nombre;
+        this.precio = precio;
+    }
+    nombreyvalor(){
+    return
+}
+}
+
+
+let pizza1 = new Pizza ("muzzarela", "$1500")
+let pizza2 = new Pizza ("Napolitana","$1800")
+let pizza3 = new Pizza ("Palmitos", "$2000")
+
+console.log(pizza1);
+console.log(pizza2);
+console.log(pizza3);
+
+console.log (pizza1.nombreyvalor()) 
