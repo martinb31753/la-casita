@@ -1,7 +1,7 @@
 
 //sistema de pedidos para una pizzeria, los primeros 10 pedidos van con un 25% de descuento( por eso lo realicé con un for)
 
-function Pedidos(nombre, pedido, domicilio) {
+/*function Pedidos(nombre, pedido, domicilio) {
     this.nombre = nombre;
     this.pedido = pedido;
     this.domicilio = domicilio;
@@ -49,3 +49,14 @@ console.log(pizza2);
 console.log(pizza3);
 
 console.log (pizza1.nombreyvalor()) 
+
+
+//EVENTO */
+
+  function agregar(){
+    alert("agregado al carrito");
+  }
+  
+  let boton =document.getElementById("btn");
+  boton.addEventListener("mouseup", agregar);
+  
