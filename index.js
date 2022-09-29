@@ -1,62 +1,137 @@
+const listadoProductos = [
 
-//sistema de pedidos para una pizzeria, los primeros 10 pedidos van con un 25% de descuento( por eso lo realicé con un for)
+    {
+        id: 1,
+        Nombre: "Remera",
+        precioVenta: 1500,
+        cantidad: 1,
+        img: "./imagenes/Remera.jpg",
+    },
 
-/*function Pedidos(nombre, pedido, domicilio) {
-    this.nombre = nombre;
-    this.pedido = pedido;
-    this.domicilio = domicilio;
-}
+    {
+        id: 2,
+        Nombre: "Camisa",
+        precioVenta: 3000,
+        cantidad: 1,
+        img: "./imagenes/camisa.jpeg"
+    },
 
-const arreglo = [];
+    {
+        id: 3,
+        Nombre: "Buzo",
+        precioVenta: 5000,
+        cantidad: 1,
+        img: "./imagenes/Buzo.jpg"
+    },
 
-for (let index = 0; index < 10; index++) {
-    let nombre = prompt("ingrese su nombre");
-    let pedido = prompt("ingrese su pedido según la carta");
-    let domicilio = prompt("Ingrese su domicilio");
-    let objeto = new Pedidos(nombre, pedido, domicilio);
+    {
+        id: 4,
+        Nombre: "Sweater",
+        precioVenta: 4500,
+        cantidad: 1,
+        img: "./imagenes/sweaterr.webp"
+    },
 
-    arreglo.push(objeto);
+    {
+        id: 5,
+        Nombre: "Campera",
+        precioVenta: 15000,
+        cantidad: 1,
+        img: "./imagenes/campera.jpeg"
+    },
 
-    alert ("Pedido confirmado")
-}
+    {
+        id: 6,
+        Nombre: "Pantalon",
+        precioVenta: 10000,
+        cantidad: 1,
+        img: "./imagenes/Pantalon.jpg"
+    },
 
-console.log(arreglo);
+]
+
+const contenedorProductos = document.getElementById("contenedor-productos")
+
+const contenedorCarrito = document.getElementById("carrito-contenedor")
 
 
+const botonVaciar = document.getElementById('vaciar-carrito')
 
+const contadorCarrito = document.getElementById("contadorCarrito")
 
+const precioTotal = document.getElementById('precioTotal')
 
-//OBJETOS CON METODO.
+let carrito = []
 
-
-class Pizza{
-    constructor(nombre,precio){
-        this.nombre = nombre;
-        this.precio = precio;
+document.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('carrito')) {
+        carrito = JSON.parse(localStorage.getItem('carrito'))
+        actualizarCarrito()
     }
-    nombreyvalor(){
-    return
+})
+
+botonVaciar.addEventListener('click', () => {
+    carrito.length = 0
+    actualizarCarrito()
+})
+
+listadoProductos.forEach((producto) => {
+    let div = document.createElement("div");
+    div.className = "producto";
+    div.id = `columna-${producto.id}`
+    div.innerHTML = `<div class="card"></div>
+        <img src="${producto.img}" class="card-img-top" alt="...">
+        <div class="card-body">
+        <h5 class="card-title">${producto.Nombre}</h5>
+        <p class="card-text">$${producto.precioVenta}</p>
+        <button id="agregar${producto.id}" class="boton-agregar">Agregar<i class="fas fa-shopping-cart"></i></button>
+        </div>
+        </div>`
+
+    contenedorProductos.append(div)
+
+    const boton = document.getElementById(`agregar${producto.id}`)
+    boton.addEventListener("click", () => {
+        agregarAlCarrito(producto.id)
+        actualizarCarrito()
+    })
+});
+
+const agregarAlCarrito = (prodId) => {
+    const item = listadoProductos.find((prod) => prod.id === prodId)
+    carrito.push(item)
+
+
 }
+
+const eliminarDelCarrito = (prodId) => {
+    const item = carrito.find((prod) => prod.id === prodId)
+
+    const indice = carrito.indexOf(item)
+    carrito.splice(indice, 1)
+    actualizarCarrito()
+
 }
 
 
-let pizza1 = new Pizza ("muzzarela", "$1500")
-let pizza2 = new Pizza ("Napolitana","$1800")
-let pizza3 = new Pizza ("Palmitos", "$2000")
+const actualizarCarrito = () => {
+    contenedorCarrito.innerHTML = ""
 
-console.log(pizza1);
-console.log(pizza2);
-console.log(pizza3);
+    carrito.forEach((prod) => {
+        const div = document.createElement('div')
+        div.className = ('productoEnCarrito')
+        div.innerHTML = `
+        <p>${prod.Nombre}</p>
+        <p>${prod.precioVenta}</p>
+        <p>cantidad: <span id="cantidad">${prod.cantidad}</span></p>
+        <button onclick="eliminarDelCarrito(${prod.id})" class="boton-eliminar">Eliminar<i class="fas fa-trash-alt"></button>`
 
-console.log (pizza1.nombreyvalor()) 
+        contenedorCarrito.append(div)
 
+        localStorage.setItem('carrito', JSON.stringify(carrito))
+    })
 
-//EVENTO */
+    contadorCarrito.innerText = carrito.length
 
-  function agregar(){
-    alert("agregado al carrito");
-  }
-  
-  let boton =document.getElementById("btn");
-  boton.addEventListener("mouseup", agregar);
-  
+    precioTotal.innerText = carrito.reduce((acc, prod) => acc + prod.cantidad * prod.precio, 0)
+}
