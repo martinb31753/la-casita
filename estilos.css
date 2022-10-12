@@ -23,7 +23,7 @@ header {
 }
 
 h1 {
-    color: royalblue;
+    color: rgb(64, 107, 238);
     text-transform: uppercase;
     font-weight: 700;
     font-size: 50px;
@@ -38,6 +38,13 @@ h1 {
     padding: 10px 20px;
     transition: all .3s;
 }
+
+#boton-carrito:hover {
+    cursor: pointer;
+    color: white;
+    background-color: royalblue;
+}
+
 
 #contenedor-productos {
     display: grid;
@@ -61,7 +68,9 @@ h1 {
     box-shadow: 2px 6px 3px 3px rgba(0, 0, 0, 0.3)
 }
 
-
+.precioProducto {
+    font-weight: 700;
+}
 
 .boton-agregar {
     background-color: royalblue;
@@ -72,6 +81,10 @@ h1 {
     border: none;
 }
 
+.modal-active {
+    opacity: 1;
+    visibility: visible;
+}
 
 .productoEnCarrito {
     border-left: 5px solid lightblue;
@@ -85,6 +98,15 @@ h1 {
 
 .productoEnCarrito:hover {
     border-left: 5px solid royalblue;
+}
+
+.finalizar-compra{
+    background-color: royalblue;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 5px;
+    border: none;
 }
 
 .boton-eliminar {

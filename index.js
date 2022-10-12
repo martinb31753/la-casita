@@ -54,6 +54,7 @@ const contenedorProductos = document.getElementById("contenedor-productos")
 
 const contenedorCarrito = document.getElementById("carrito-contenedor")
 
+const botoComprar = document.getElementById ('comprar')
 
 const botonVaciar = document.getElementById('vaciar-carrito')
 
@@ -74,6 +75,14 @@ botonVaciar.addEventListener('click', () => {
     carrito.length = 0
     actualizarCarrito()
 })
+
+botoComprar.addEventListener ('click', () => {
+    carrito.length = 0
+    actualizarCarrito()
+})
+
+
+
 
 listadoProductos.forEach((producto) => {
     let div = document.createElement("div");
@@ -135,3 +144,16 @@ const actualizarCarrito = () => {
 
     precioTotal.innerText = carrito.reduce((acc, prod) => acc + prod.cantidad * prod.precio, 0)
 }
+
+//al finalizar la compra se ejecuta un alert (libreria sweetalert).
+let comprar = document. getElementById("comprar");
+comprar. addEventListener("click",() =>{
+   
+Swal.fire({
+    position: 'top-end',
+    icon: 'success',
+    title: 'Su compra fue un exito',
+    showConfirmButton: false,
+    timer: 3500
+  })
+})
